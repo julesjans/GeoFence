@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		843C26001D36C44300DCD434 /* Geo Fence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Geo Fence.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		843C26001D36C44300DCD434 /* GeoFence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoFence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843C26031D36C44300DCD434 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		843C26051D36C44300DCD434 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		843C26081D36C44300DCD434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		843C25F71D36C44300DCD434 = {
 			isa = PBXGroup;
 			children = (
-				843C26021D36C44300DCD434 /* Geo Fence */,
+				843C26021D36C44300DCD434 /* GeoFence */,
 				843C26011D36C44300DCD434 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,12 +50,12 @@
 		843C26011D36C44300DCD434 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				843C26001D36C44300DCD434 /* Geo Fence.app */,
+				843C26001D36C44300DCD434 /* GeoFence.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		843C26021D36C44300DCD434 /* Geo Fence */ = {
+		843C26021D36C44300DCD434 /* GeoFence */ = {
 			isa = PBXGroup;
 			children = (
 				843C26031D36C44300DCD434 /* AppDelegate.swift */,
@@ -67,15 +67,15 @@
 				843C260C1D36C44300DCD434 /* LaunchScreen.storyboard */,
 				843C260F1D36C44300DCD434 /* Info.plist */,
 			);
-			path = "Geo Fence";
+			path = GeoFence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		843C25FF1D36C44300DCD434 /* Geo Fence */ = {
+		843C25FF1D36C44300DCD434 /* GeoFence */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 843C26121D36C44300DCD434 /* Build configuration list for PBXNativeTarget "Geo Fence" */;
+			buildConfigurationList = 843C26121D36C44300DCD434 /* Build configuration list for PBXNativeTarget "GeoFence" */;
 			buildPhases = (
 				843C25FC1D36C44300DCD434 /* Sources */,
 				843C25FD1D36C44300DCD434 /* Frameworks */,
@@ -85,9 +85,9 @@
 			);
 			dependencies = (
 			);
-			name = "Geo Fence";
+			name = GeoFence;
 			productName = "Geo Fence";
-			productReference = 843C26001D36C44300DCD434 /* Geo Fence.app */;
+			productReference = 843C26001D36C44300DCD434 /* GeoFence.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -105,7 +105,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 843C25FB1D36C44300DCD434 /* Build configuration list for PBXProject "Geo Fence" */;
+			buildConfigurationList = 843C25FB1D36C44300DCD434 /* Build configuration list for PBXProject "GeoFence" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -118,7 +118,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				843C25FF1D36C44300DCD434 /* Geo Fence */,
+				843C25FF1D36C44300DCD434 /* GeoFence */,
 			);
 		};
 /* End PBXProject section */
@@ -259,10 +259,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "Geo Fence/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/GeoFence/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.julesjans.Geo-Fence";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GeoFence;
 			};
 			name = Debug;
 		};
@@ -270,17 +270,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "Geo Fence/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/GeoFence/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.julesjans.Geo-Fence";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GeoFence;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		843C25FB1D36C44300DCD434 /* Build configuration list for PBXProject "Geo Fence" */ = {
+		843C25FB1D36C44300DCD434 /* Build configuration list for PBXProject "GeoFence" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				843C26101D36C44300DCD434 /* Debug */,
@@ -289,7 +289,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		843C26121D36C44300DCD434 /* Build configuration list for PBXNativeTarget "Geo Fence" */ = {
+		843C26121D36C44300DCD434 /* Build configuration list for PBXNativeTarget "GeoFence" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				843C26131D36C44300DCD434 /* Debug */,
