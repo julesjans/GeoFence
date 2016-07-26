@@ -1,4 +1,4 @@
-# Geo Fence
+# GeoFence
 
 Prototype for Core Location region monitoring
 
