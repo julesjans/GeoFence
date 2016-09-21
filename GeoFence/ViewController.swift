@@ -34,22 +34,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad()
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.activityType = CLActivityType.Fitness
+        locationManager.activityType = CLActivityType.fitness
         locationManager.delegate = self
         locationManager.stopMonitoringSignificantLocationChanges()
         locationManager.startUpdatingLocation()
         
-        mapView!.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
+        mapView!.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         
         clearMapOverlays()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         alert("Geo Fence", message: "Tap to add fences...", color: nil)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
@@ -61,32 +61,32 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         alert("Track", message: "Estimated file size:", color: nil)
     }
     
-    func updateTrackLine(from: CLLocation, to:CLLocation) {
+    func updateTrackLine(_ from: CLLocation, to:CLLocation) {
         var pointsToUse: [CLLocationCoordinate2D] = [to.coordinate, from.coordinate]
         let polyLine = MKPolyline(coordinates: &pointsToUse, count: pointsToUse.count)
-        mapView!.addOverlay(polyLine)
+        mapView!.add(polyLine)
         trackLines.append(polyLine)
     }
     
     
     // MARK: Fences
     
-    @IBAction func didTapMapView(gestureRecognizer: UIGestureRecognizer) {
-        if (gestureRecognizer.state == .Ended) {
+    @IBAction func didTapMapView(_ gestureRecognizer: UIGestureRecognizer) {
+        if (gestureRecognizer.state == .ended) {
             addFence(coordinateFromGesture(gestureRecognizer))
         }
     }
     
-    func addFence(center: CLLocationCoordinate2D) {
+    func addFence(_ center: CLLocationCoordinate2D) {
      
         let fence = Fence(coordinate:center, radius: max((mapView?.region.span.latitudeDelta)! * 7500.0, 100))
         fences.append(fence)
         
         if let circle = fence.circle {
-            mapView!.addOverlay(circle)
+            mapView!.add(circle)
         }
         if let region = fence.region {
-            locationManager.startMonitoringForRegion(region)
+            locationManager.startMonitoring(for: region)
         }
     }
 
@@ -100,22 +100,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         trackCount?.text = ""
         
         for polyline in trackLines {
-            mapView!.removeOverlay(polyline)
+            mapView!.remove(polyline)
         }
         
         for fence in fences {
             if let circle = fence.circle {
-                mapView!.removeOverlay(circle)
+                mapView!.remove(circle)
             }
             if let region = fence.region {
-                locationManager.stopMonitoringForRegion(region)
+                locationManager.stopMonitoring(for: region)
             }
         }
         
         alert("Geo Fence", message: "Cleared overlays", color: nil)
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 
         if (overlay is MKCircle) {
             let renderer = GradientCircleRenderer(overlay: overlay)
@@ -143,12 +143,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
  
     // MARK: Location Manager Delegate
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last
         if (tracking) {
             if let currentLocation = location {
                 track.append(currentLocation)
-                trackCount?.text = "\(NSByteCountFormatter.stringFromByteCount((Int64(track.count * 108)), countStyle: .File))"
+                trackCount?.text = "\(ByteCountFormatter.string(fromByteCount: (Int64(track.count * 108)), countStyle: .file))"
                 if (lastKnownPosition != nil) {
                     updateTrackLine(lastKnownPosition!, to: currentLocation)
                 }
@@ -157,52 +157,52 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         lastKnownPosition = location!
     }
     
-    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         alert("Entered Region", message: region.identifier, color: fenceColor(region))
     }
     
-    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         alert("Exited Region", message: region.identifier, color:  fenceColor(region))
     }
     
-    func locationManager(manager: CLLocationManager, didStartMonitoringForRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         alert("Monitoring Region", message: region.identifier, color:  fenceColor(region))
     }
     
-    func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
         alert("Failed Monitoring Region", message: error.localizedDescription, color: nil)
     }
     
     
     // MARK: Helpers
     
-    func coordinateFromGesture(gestureRecognizer: UIGestureRecognizer) -> CLLocationCoordinate2D {
-        let touchPoint = gestureRecognizer.locationInView(gestureRecognizer.view)
-        let coordinate = self.mapView!.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
+    func coordinateFromGesture(_ gestureRecognizer: UIGestureRecognizer) -> CLLocationCoordinate2D {
+        let touchPoint = gestureRecognizer.location(in: gestureRecognizer.view)
+        let coordinate = self.mapView!.convert(touchPoint, toCoordinateFrom: self.mapView)
         return coordinate
     }
     
-    func alert(title: String, message: String, color: UIColor?) {
+    func alert(_ title: String, message: String, color: UIColor?) {
         
-        func setAlpha(alpha: CGFloat) {
+        func setAlpha(_ alpha: CGFloat) {
             for view in labels {
                 view.alpha = alpha
             }
         }
-        colorView?.backgroundColor = (color != nil) ? color?.colorWithAlphaComponent(0.2) : UIColor.clearColor()
+        colorView?.backgroundColor = (color != nil) ? color?.withAlphaComponent(0.2) : UIColor.clear
     
         setAlpha(0.0)
         titleLabel?.text = title
         messageLabel?.text = message
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             setAlpha(1.0)
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        }) { (bool) in
-            UIView.animateWithDuration(0.6, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { setAlpha(0.0) }, completion: nil)
-        }
+        }, completion: { (bool) in
+            UIView.animate(withDuration: 0.6, delay: 1.0, options: UIViewAnimationOptions(), animations: { setAlpha(0.0) }, completion: nil)
+        }) 
     }
     
-    func fenceColor(region: CLRegion) -> UIColor? {
+    func fenceColor(_ region: CLRegion) -> UIColor? {
         for fence in fences where fence.region!.identifier == region.identifier {
             return fence.color
         }

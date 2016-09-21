@@ -23,7 +23,7 @@ class Fence: NSObject {
     convenience init(coordinate: CLLocationCoordinate2D, radius: Double) {
         self.init()
         self.coordinate = coordinate
-        self.circle = MKCircle(centerCoordinate: coordinate, radius: radius)
+        self.circle = MKCircle(center: coordinate, radius: radius)
         self.region = CLCircularRegion(center: coordinate, radius: radius, identifier: "\(coordinate.latitude.roundToPlaces(6)), \(coordinate.longitude.roundToPlaces(6)), \(radius)")
     }
 
