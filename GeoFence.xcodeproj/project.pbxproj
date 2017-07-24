@@ -102,6 +102,7 @@
 				TargetAttributes = {
 					843C25FF1D36C44300DCD434 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 432M5K2J3X;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -265,6 +266,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 432M5K2J3X;
 				INFOPLIST_FILE = "$(SRCROOT)/GeoFence/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.julesjans.Geo-Fence";
@@ -277,6 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 432M5K2J3X;
 				INFOPLIST_FILE = "$(SRCROOT)/GeoFence/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.julesjans.Geo-Fence";
