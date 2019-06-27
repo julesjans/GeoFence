@@ -47,6 +47,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         alert("Geo Fence", message: "Tap to add fences...", color: nil)
+        
     }
     
     override var prefersStatusBarHidden : Bool {
@@ -64,7 +65,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func updateTrackLine(_ from: CLLocation, to:CLLocation) {
         var pointsToUse: [CLLocationCoordinate2D] = [to.coordinate, from.coordinate]
         let polyLine = MKPolyline(coordinates: &pointsToUse, count: pointsToUse.count)
-        mapView!.add(polyLine)
+        mapView!.addOverlay(polyLine)
         trackLines.append(polyLine)
     }
     
@@ -79,11 +80,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func addFence(_ center: CLLocationCoordinate2D) {
      
-        let fence = Fence(coordinate:center, radius: max((mapView?.region.span.latitudeDelta)! * 7500.0, 100))
+        let fence = Fence(coordinate:center, radius: max((mapView?.region.span.latitudeDelta)! * 1000, 100))
         fences.append(fence)
         
         if let circle = fence.circle {
-            mapView!.add(circle)
+            mapView!.addOverlay(circle)
         }
         if let region = fence.region {
             locationManager.startMonitoring(for: region)
@@ -100,12 +101,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         trackCount?.text = ""
         
         for polyline in trackLines {
-            mapView!.remove(polyline)
+            mapView!.removeOverlay(polyline)
         }
         
         for fence in fences {
             if let circle = fence.circle {
-                mapView!.remove(circle)
+                mapView!.removeOverlay(circle)
             }
             if let region = fence.region {
                 locationManager.stopMonitoring(for: region)
@@ -198,7 +199,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             setAlpha(1.0)
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }, completion: { (bool) in
-            UIView.animate(withDuration: 0.6, delay: 1.0, options: UIViewAnimationOptions(), animations: { setAlpha(0.0) }, completion: nil)
+            UIView.animate(withDuration: 0.6, delay: 1.0, options: UIView.AnimationOptions(), animations: { setAlpha(0.0) }, completion: nil)
         }) 
     }
     
