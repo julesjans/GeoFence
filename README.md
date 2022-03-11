@@ -2,4 +2,4 @@
 
 Prototype app for Core Location region monitoring.
 
-![GeoFence](http://bucket-uk.julesjans.com.s3.amazonaws.com/Misc/Images/geofence-simulator.gif)
+![geofence-simulator](https://user-images.githubusercontent.com/57953/157979585-9c9a0cf5-5ca0-4c0e-8e36-4e4e0dc0297f.gif)
